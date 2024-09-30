@@ -1,0 +1,6 @@
+# Configuración del Backup
+REMOTE_USER="remote-user"
+REMOTE_HOST="remote-host"
+DB_NAME="dbName"
+DB_USER="dbUser"
+DB_PASS="dbPass"
