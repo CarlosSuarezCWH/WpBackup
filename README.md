@@ -1,44 +1,23 @@
-# Script de Backup
+# Descripción
+Este script está diseñado para realizar respaldos automáticos de un sitio web WordPress, incluyendo sus archivos y base de datos. Utiliza un archivo .env para manejar las configuraciones, lo que facilita su personalización y seguridad. También incluye soporte para notificaciones por correo electrónico y Slack, y gestiona la retención de backups antiguos (diarios, semanales y mensuales).
 
-Este script automatiza el proceso de copia de seguridad de bases de datos y archivos hacia un servidor remoto.
+## Características
+- Backup de Archivos: Respaldos completos o incrementales de los archivos del sitio.
+- Backup de Base de Datos: Dumps de la base de datos comprimidos y transferidos al servidor remoto.
+- Configuración mediante .env: Todas las variables sensibles y configuraciones se definen en un archivo externo.
+- Notificaciones: Envía notificaciones por correo electrónico y Slack (opcional).
+- Gestión de Retención: Elimina automáticamente los backups antiguos según la configuración.
+- Seguridad: Soporte para exclusión de archivos innecesarios y cifrado del backup de la base de datos.
 
 ## Requisitos
+### Comandos Necesarios:
+- mariadb-dump
+- tar
+- ssh
+- scp
+- rsync
+- mail
+- curl
+- Acceso SSH: El servidor remoto debe ser accesible mediante SSH.
+- Archivo .env: Configuración de variables de entorno.
 
-- Bash
-- MariaDB
-- SSH
-- Herramienta de envío de correos (como `mail`)
-
-## Configuración
-
-1. **Variables de entorno**: Asegúrate de definir las siguientes variables en un archivo de configuración:
-
-   - `REMOTE_USER`: Usuario para acceder al servidor remoto.
-   - `REMOTE_HOST`: Dirección del servidor remoto.
-   - `DB_NAME`: Nombre de la base de datos a respaldar.
-   - `DB_USER`: Usuario de la base de datos.
-   - `DB_PASS`: Contraseña de la base de datos.
-
-2. **Configuración del script**: Ajusta las siguientes variables dentro del script:
-
-   - `directorio_local`: Ruta del directorio local que deseas respaldar.
-   - `directorio_remoto`: Ruta en el servidor remoto para almacenar los backups.
-   - `log_file`: Ruta para el archivo de log.
-   - `max_backups`: Número máximo de backups a mantener.
-   - `correo_notificacion`: Correo electrónico para recibir notificaciones sobre el proceso.
-
-## Funciones
-
-- **enviar_notificacion**: Envía notificaciones por correo electrónico en caso de errores.
-- **backup_db**: Realiza un respaldo de la base de datos y lo guarda localmente.
-- **enviar_backup**: Comprime los archivos y los envía al servidor remoto, junto con el backup de la base de datos.
-- **eliminar_backups_antiguos**: Elimina copias de seguridad antiguas según el límite establecido.
-
-## Ejecución
-
-El script ejecuta un backup completo los lunes y backups incrementales en otros días.
-
-### Para ejecutar el script:
-
-```bash
-bash nombre_del_script.sh
