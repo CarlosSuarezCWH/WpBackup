@@ -1,6 +1,25 @@
-# Configuración del Backup
-REMOTE_USER="remote-user"
-REMOTE_HOST="remote-host"
-DB_NAME="dbName"
-DB_USER="dbUser"
-DB_PASS="dbPass"
+# Configuración del Servidor Remoto
+REMOTE_USER=backup_user              # Usuario SSH para el servidor remoto
+REMOTE_HOST=192.168.1.100            # Dirección IP o hostname del servidor remoto
+
+# Configuración de la Base de Datos
+DB_NAME=wordpress_database           # Nombre de la base de datos de WordPress
+DB_USER=wp_user                      # Usuario con permisos de acceso a la base de datos
+DB_PASS=wp_password                  # Contraseña del usuario de la base de datos
+
+# Configuración de Notificaciones
+EMAIL_NOTIFICATION=admin@example.com # Dirección de correo para recibir notificaciones
+SLACK_WEBHOOK_URL=https://hooks.slack.com/services/your/webhook/url  # Webhook de Slack para notificaciones opcionales
+
+# Configuración de Directorios
+LOCAL_DIR=/var/www/html              # Directorio local que contiene los archivos de WordPress
+REMOTE_DIR=/backups/wordpress        # Directorio remoto donde se almacenarán los backups
+
+# Configuración de Backups
+MAX_DAILY_BACKUPS=7                  # Número máximo de backups diarios a conservar
+MAX_WEEKLY_BACKUPS=4                 # Número máximo de backups semanales a conservar
+MAX_MONTHLY_BACKUPS=12               # Número máximo de backups mensuales a conservar
+COMPRESSION_LEVEL=9                  # Nivel de compresión (1-9)
+
+# Configuración Adicional
+EXCLUDE_FILES="*.tmp *.log cache node_modules"  # Archivos o directorios a excluir en el backup
